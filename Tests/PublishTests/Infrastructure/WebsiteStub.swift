@@ -5,7 +5,7 @@
 */
 
 import Foundation
-import Publish
+import PublishVE
 import Plot
 
 class WebsiteStub {

@@ -5,7 +5,7 @@
 */
 
 import XCTest
-import Publish
+import PublishVE
 import Plot
 import Ink
 

@@ -5,7 +5,7 @@
 */
 
 import XCTest
-import Publish
+import PublishVE
 
 final class WebsiteTests: PublishTestCase {
     private var website: WebsiteStub.WithoutItemMetadata!

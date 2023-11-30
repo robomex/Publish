@@ -5,7 +5,7 @@
 */
 
 import Foundation
-import Publish
+import PublishVE
 
 extension Page: Stubbable {
     private static let defaultDate = Date()

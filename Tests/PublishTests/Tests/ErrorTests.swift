@@ -5,7 +5,7 @@
 */
 
 import XCTest
-import Publish
+import PublishVE
 
 final class ErrorTests: PublishTestCase {
     func testErrorForInvalidRootPath() throws {

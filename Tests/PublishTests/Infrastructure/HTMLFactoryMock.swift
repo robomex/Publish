@@ -4,7 +4,7 @@
 *  MIT license, see LICENSE file for details
 */
 
-import Publish
+import PublishVE
 import Plot
 
 final class HTMLFactoryMock<Site: Website>: HTMLFactory {

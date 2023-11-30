@@ -7,7 +7,7 @@
 import XCTest
 import Files
 import Ink
-import Publish
+import PublishVE
 
 final class MarkdownTests: PublishTestCase {
     func testParsingFileWithTitle() throws {

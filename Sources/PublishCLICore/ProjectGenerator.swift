@@ -133,7 +133,7 @@ private extension ProjectGenerator {
         let websiteProtocol = (name == "Website") ? "Publish.Website" : "Website"
         try folder.createFileIfNeeded(at: path).write("""
         import Foundation
-        import Publish
+        import PublishVE
         import Plot
 
         // This type acts as the configuration for your website.
@@ -165,7 +165,7 @@ private extension ProjectGenerator {
         let methodName = name[name.startIndex].lowercased() + name.dropFirst()
 
         try folder.createFileIfNeeded(at: path).write("""
-        import Publish
+        import PublishVE
 
         public extension Plugin {
             /// Documentation for your plugin

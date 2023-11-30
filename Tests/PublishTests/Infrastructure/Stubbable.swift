@@ -5,7 +5,7 @@
 */
 
 import Foundation
-import Publish
+import PublishVE
 
 protocol Stubbable {
     static func stub(withPath path: Path) -> Self

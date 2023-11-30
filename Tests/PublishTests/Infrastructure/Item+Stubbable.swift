@@ -5,7 +5,7 @@
 */
 
 import Foundation
-import Publish
+import PublishVE
 
 extension Item: Stubbable where Site == WebsiteStub.WithoutItemMetadata {
     private static let defaultDate = Date()

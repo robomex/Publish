@@ -5,7 +5,7 @@
 */
 
 import XCTest
-import Publish
+import PublishVE
 import Codextended
 
 final class PathTests: PublishTestCase {

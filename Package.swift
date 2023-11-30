@@ -9,10 +9,10 @@
 import PackageDescription
 
 let package = Package(
-    name: "Publish-VE",
+    name: "PublishVE",
     platforms: [.macOS(.v12)],
     products: [
-        .library(name: "Publish-VE", targets: ["Publish-VE"]),
+        .library(name: "PublishVE", targets: ["PublishVE"]),
         .executable(name: "publish-cli", targets: ["PublishCLI"])
     ],
     dependencies: [
@@ -54,7 +54,7 @@ let package = Package(
     ],
     targets: [
         .target(
-            name: "Publish-VE",
+            name: "PublishVE",
             dependencies: [
                 "Ink", "Plot", "Files", "Codextended",
                 "ShellOut", "Sweep", "CollectionConcurrencyKit"
@@ -66,11 +66,11 @@ let package = Package(
         ),
         .target(
             name: "PublishCLICore",
-            dependencies: ["Publish-VE"]
+            dependencies: ["PublishVE"]
         ),
         .testTarget(
             name: "PublishTests",
-            dependencies: ["Publish-VE", "PublishCLICore"]
+            dependencies: ["PublishVE", "PublishCLICore"]
         )
     ]
 )
