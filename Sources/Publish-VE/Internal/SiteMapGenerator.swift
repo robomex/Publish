@@ -4,6 +4,7 @@
 *  MIT license, see LICENSE file for details
 */
 
+import Foundation
 import Plot
 
 struct SiteMapGenerator<Site: Website> {
@@ -27,6 +28,17 @@ struct SiteMapGenerator<Site: Website> {
     }
 }
 
+public extension URL {
+    func slashTerminated() -> URL {
+        guard !self.absoluteString.isEmpty else {
+            return self
+        }
+        
+        let separator = (self.absoluteString.last == "/" ? "" : "/")
+        return URL(string: self.absoluteString + separator) ?? self
+    }
+}
+
 private extension SiteMapGenerator {
     func shouldIncludePath(_ path: Path) -> Bool {
         !excludedPaths.contains(where: {
@@ -43,7 +55,7 @@ private extension SiteMapGenerator {
 
                 return .group(
                     .url(
-                        .loc(site.url(for: section)),
+                        .loc(site.url(for: section).slashTerminated()),
                         .changefreq(.daily),
                         .priority(1.0),
                         .lastmod(max(
@@ -57,7 +69,7 @@ private extension SiteMapGenerator {
                         }
 
                         return .url(
-                            .loc(site.url(for: item)),
+                            .loc(site.url(for: item).slashTerminated()),
                             .changefreq(.monthly),
                             .priority(0.5),
                             .lastmod(item.lastModified)
@@ -71,7 +83,7 @@ private extension SiteMapGenerator {
                 }
 
                 return .url(
-                    .loc(site.url(for: page)),
+                    .loc(site.url(for: page).slashTerminated()),
                     .changefreq(.monthly),
                     .priority(0.5),
                     .lastmod(page.lastModified)

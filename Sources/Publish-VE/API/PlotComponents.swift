@@ -124,11 +124,22 @@ public extension Node where Context: HTML.BodyContext {
     }
 }
 
+public extension String {
+    func slashTerminated() -> String {
+        guard !self.isEmpty else {
+            return ""
+        }
+
+        let separator = (self.last == "/" ? "" : "/")
+        return self + separator
+    }
+}
+
 public extension Node where Context: HTMLLinkableContext {
     /// Assign a path to link the element to, using its `href` attribute.
     /// - parameter path: The absolute path to assign.
     static func href(_ path: Path) -> Node {
-        .href(path.absoluteString)
+        .href(path.absoluteString.slashTerminated())
     }
 }
 
