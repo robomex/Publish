@@ -1,7 +1,7 @@
 // swift-tools-version:5.5
 
 /**
-*  Publish
+*  Publish-VE
 *  Copyright (c) John Sundell 2019
 *  MIT license, see LICENSE file for details
 */
@@ -9,10 +9,10 @@
 import PackageDescription
 
 let package = Package(
-    name: "Publish",
+    name: "Publish-VE",
     platforms: [.macOS(.v12)],
     products: [
-        .library(name: "Publish", targets: ["Publish"]),
+        .library(name: "Publish-VE", targets: ["Publish-VE"]),
         .executable(name: "publish-cli", targets: ["PublishCLI"])
     ],
     dependencies: [
@@ -54,7 +54,7 @@ let package = Package(
     ],
     targets: [
         .target(
-            name: "Publish",
+            name: "Publish-VE",
             dependencies: [
                 "Ink", "Plot", "Files", "Codextended",
                 "ShellOut", "Sweep", "CollectionConcurrencyKit"
@@ -66,11 +66,11 @@ let package = Package(
         ),
         .target(
             name: "PublishCLICore",
-            dependencies: ["Publish"]
+            dependencies: ["Publish-VE"]
         ),
         .testTarget(
             name: "PublishTests",
-            dependencies: ["Publish", "PublishCLICore"]
+            dependencies: ["Publish-VE", "PublishCLICore"]
         )
     ]
 )
