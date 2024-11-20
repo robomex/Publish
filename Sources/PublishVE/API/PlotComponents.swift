@@ -181,9 +181,10 @@ internal extension Node where Context: RSSItemContext {
                         return
                     }
 
-                    let absoluteURL = baseURL.appendingPathComponent(String(url))
-                    let isHref = (html[range.lowerBound] == "h")
-                    links.append((absoluteURL, range, isHref))
+                    if let absoluteURL = URL(string: String(url), relativeTo: baseURL)?.absoluteURL {
+                        let isHref = (html[range.lowerBound] == "h")
+                        links.append((absoluteURL, range, isHref))
+                    }
                 }
             )
         ])
