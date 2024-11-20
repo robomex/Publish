@@ -224,7 +224,12 @@ public extension Website {
     /// - parameter path: The path to return a URL for.
     func url(for path: Path) -> URL {
         guard !path.string.isEmpty else { return url }
-        return url.appendingPathComponent(path.string)
+        
+        if let absoluteURL = URL(string: path.string, relativeTo: url)?.absoluteURL {
+            return absoluteURL
+        } else {
+            return url
+        }
     }
 
     /// Return the absolute URL for a given location.
