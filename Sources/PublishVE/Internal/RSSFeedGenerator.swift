@@ -17,8 +17,6 @@ internal struct RSSFeedGenerator<Site: Website> {
 
     func generate() async throws {
         let outputFile = try context.createOutputFile(at: config.targetPath)
-        let cacheFile = try context.cacheFile(named: "feed")
-        let oldCache = try? cacheFile.read().decoded() as Cache
         var items = [Item<Site>]()
 
         for sectionID in includedSectionIDs {
@@ -30,21 +28,8 @@ internal struct RSSFeedGenerator<Site: Website> {
         if let predicate = itemPredicate?.inverse() {
             items.removeAll(where: predicate.matches)
         }
-
-        if let date = context.lastGenerationDate, let cache = oldCache {
-            if cache.config == config, cache.itemCount == items.count {
-                let newlyModifiedItem = items.first { $0.lastModified > date }
-
-                guard newlyModifiedItem != nil else {
-                    return try outputFile.write(cache.feed)
-                }
-            }
-        }
-
+        
         let feed = await makeFeed(containing: items).render(indentedBy: config.indentation)
-
-        let newCache = Cache(config: config, feed: feed, itemCount: items.count)
-        try cacheFile.write(newCache.encoded())
         try outputFile.write(feed)
     }
 }
